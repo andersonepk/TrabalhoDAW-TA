@@ -3,6 +3,7 @@ package br.edu.ifsul.testes;
 import br.edu.ifsul.jpa.EntityManagerUtil;
 
 import br.edu.ifsul.modelo.PessoaFisica;
+import br.edu.ifsul.modelo.PessoaJuridica;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.persistence.EntityManager;
@@ -14,11 +15,11 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 
-public class TestePersistirPessoaFisica {
+public class TestePersistirPessoaJuridica {
     
     EntityManager em;
     
-    public TestePersistirPessoaFisica() {
+    public TestePersistirPessoaJuridica() {
     }
     
     @Before
@@ -35,18 +36,17 @@ public class TestePersistirPessoaFisica {
     public void teste(){
         Boolean exception = false;
         try {
-            PessoaFisica pf = new PessoaFisica();
-            pf.setBairro("Centro");
-            pf.setCep("99999-999");        
-            pf.setComplemento("AP 333");
-            pf.setCpf("835.585.000-91");
-            pf.setEmail("Iago@passofundo.ifsul.edu.br");
-            pf.setEndereco("Rua xxxx");
-            pf.setNascimento(new GregorianCalendar(2000, Calendar.JANUARY, 12));
-            pf.setNome("Iago Silva");
-            pf.setRg("8746647389");
+            PessoaJuridica pj = new PessoaJuridica();
+            pj.setBairro("Centro");
+            pj.setCep("99999-999");        
+            pj.setComplemento("AP 333");
+            pj.setCnpj("02.978.444/0001-21");
+            pj.setEmail("Empresa@passofundo.ifsul.edu.br");
+            pj.setEndereco("Rua xxxx");            
+            pj.setNome("Empresa LTDA xxx yyyy");
+            pj.setIe("8746647389");
             em.getTransaction().begin();
-            em.persist(pf);
+            em.persist(pj);
             em.getTransaction().commit();
         } catch(Exception e){
             exception = true;

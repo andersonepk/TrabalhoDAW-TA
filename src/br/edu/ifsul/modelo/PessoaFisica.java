@@ -21,11 +21,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CPF;
 
-/**
- *
- * @author Jorge Luis Boeira Bavaresco
- * @email jorge.bavaresco@passofundo.ifsul.edu.br
- */
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "pessoa_fisica")

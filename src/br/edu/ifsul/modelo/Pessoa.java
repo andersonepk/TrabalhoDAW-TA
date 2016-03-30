@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -24,11 +26,6 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
-/**
- *
- * @author Jorge Luis Boeira Bavaresco
- * @email jorge.bavaresco@passofundo.ifsul.edu.br
- */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "pessoa")
@@ -62,6 +59,13 @@ public abstract class Pessoa implements Serializable {
     @Length(max = 30, message = "O complemento deve ter até {max} caracteres")
     @Column(name = "complemento", length = 30)        
     private String complemento;
+    @ManyToMany
+    @JoinTable(name = "reservas",
+            joinColumns = 
+            @JoinColumn(name = "pessoa", referencedColumnName = "id"),
+            inverseJoinColumns = 
+            @JoinColumn(name = "livros", referencedColumnName = "id"))
+    private List<Livros> reservam = new ArrayList<>();
   
    
 
@@ -125,6 +129,8 @@ public abstract class Pessoa implements Serializable {
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
+    
+    
 
  
 
@@ -157,6 +163,14 @@ public abstract class Pessoa implements Serializable {
     @Override
     public String toString() {
         return nome;
+    }
+
+    public List<Livros> getReservam() {
+        return reservam;
+    }
+
+    public void setReservam(List<Livros> reservam) {
+        this.reservam = reservam;
     }
 
 }
