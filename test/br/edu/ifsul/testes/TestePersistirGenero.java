@@ -37,7 +37,7 @@ public class TestePersistirGenero {
         boolean exception = false;
         try {
             Genero g = new Genero();
-            g.setDescricao("Acao");           
+            g.setDescricao("Romance");           
             em.getTransaction().begin();
             em.persist(g);
             em.getTransaction().commit();
